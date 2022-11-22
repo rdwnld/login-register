@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import Axios from 'axios';
 
 
 function Register() {
@@ -21,6 +22,17 @@ function Register() {
         else if (nama === '') {
             setValidasi('Username, Password atau Nama harus diisi')
         }
+        else {
+            // Proses
+            // console.log(username, password, nama)
+
+            Axios.post("http://localhost:3001/register", {
+                username: username,
+                password: password,
+                nama: nama
+            })
+
+        }
     }
     return (
         <div className='container py-5'>
@@ -30,16 +42,16 @@ function Register() {
             </p>
             <hr />
             <div className='form-group'>
-                <label>Username</label>
+                <label><b>Username</b></label>
                 <input type='text' className='form-control rounded-5' onChange={(e) => { setUsername(e.target.value) }} ></input>
             </div>
             <div className='text-danger' onChange={() => setValidasi(validasi)}>{validasi}</div>
             <div className='form-group mt-3'>
-                <label>Password</label>
+                <label><b>Password</b></label>
                 <input type='password' className='form-control rounded-5' onChange={(e) => { setPassword(e.target.value) }} ></input>
             </div>
             <div className='form-group mt-3'>
-                <label>Nama</label>
+                <label><b>Nama</b></label>
                 <input type='text' className='form-control rounded-5' onChange={(e) => { setNama(e.target.value) }} ></input>
             </div>
             <div className='form-group'>
