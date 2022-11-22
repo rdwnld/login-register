@@ -1,0 +1,13 @@
+.form-group label:not(.checkboxLabel) {
+    display: inline-block;
+    background-color: white;
+    margin-bottom: -10px;
+    position: absolute;
+    padding: 0 20px;
+    transform: translate(30px, -10px);
+    font-size: 14px;
+}
+
+.container {
+    background-color: white;
+}
