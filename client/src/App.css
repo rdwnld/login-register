@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
 
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -13,13 +13,13 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
 .keren {
   font-family: 'Montserrat', sans-serif;
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -42,4 +42,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */

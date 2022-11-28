@@ -32,20 +32,19 @@ function Dashboard() {
 
     return (
         <>
-            <Navbar bg='primary'>
+            <Navbar bg='light' className='shadow py-3' >
                 <div className='container-fluid px-5'>
-                    <div className='navbar-brand text-light' href="#home">Navbar</div>
+                    <div className='navbar-brand text-dark' href="#home">Navbar</div>
                     <ul className='navbar-nav ms-auto'>
                         <li className='nav-item'>
-                            <button className='btn btn-danger'>Logout</button>
+                            <button className='btn btn-primary' onClick={logout} >Logout</button>
                         </li>
                     </ul>
                 </div>
             </Navbar>
-
             <div className='container-fluid bg-light'>
                 <div className='container py-5'>
-                    Selamat Datang <b></b>!
+                    Selamat Datang <b>{username}</b>!
                     <p>Ini adalah halaman dashboard implementasi Login dan Register menggunakan ReactJS-ExpressJS-MySql</p>
                     <blockquote>
                         Harapannya dengan pembelajaran ini peserta didik sudah mampu untuk membuat dan mengimplementasikan

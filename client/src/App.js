@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div className='keren'>
+    <div className='keren mx-auto'>
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />

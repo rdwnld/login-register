@@ -8,15 +8,6 @@ const bcrypt = require('bcrypt');
 
 app.use(express.json());
 
-// Koneksi ke database
-const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'log-regDB',
-})
-
-
 // Implementasi Cors
 app.use(
     cors({
@@ -24,10 +15,19 @@ app.use(
         methods: ["GET", "POST"],
         credentials: true,
     })
-)
+);
 
 // Implementasi body-parser
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Koneksi ke database
+const db = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '',
+    database: 'log-regDB',
+});
+
 
 
 // Proses register ke database
@@ -45,10 +45,15 @@ app.post("/register", (req, res) => {
             (err, result) => {
                 console.log(err);
             }
-        )
-    })
+        );
+    });
 
-})
+});
+
+
+
+
+
 
 
 // Proses Login
@@ -57,13 +62,13 @@ app.post("/login", (req, res) => {
     const password = req.body.password;
 
     db.query(
-        "SELECt * FROM users WHERE username = ?;",
+        "SELECT * FROM users WHERE username = ?;",
         username,
         (err, result) => {
             if (err) {
                 res.send({ err: err });
             }
-            console.log(result);
+            console.log(result[0].password);
             if (result.length > 0) {
                 bcrypt.compare(password, result[0].password, (error, response) => {
                     if (response) {
@@ -73,6 +78,7 @@ app.post("/login", (req, res) => {
                             { expiresIn: "1h" }
                         );
                         res.send(token);
+                        console.log(token);
                     }
                     else {
                         res.send({ message: "Kombinasi username atau password salah" });
@@ -83,9 +89,9 @@ app.post("/login", (req, res) => {
                 res.send({ message: "User tidak ditemukan" });
             }
         }
-    )
-})
+    );
+});
 
 app.listen('3001', () => {
     console.log("server running");
-})
+});

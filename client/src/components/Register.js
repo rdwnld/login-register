@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
+import './style.css'
 
 
 function Register() {
@@ -8,6 +10,7 @@ function Register() {
     const [password, setPassword] = useState('')
     const [nama, setNama] = useState('')
     const [validasi, setValidasi] = useState('')
+    let navigate = useNavigate();
 
 
     const register = () => {
@@ -32,27 +35,29 @@ function Register() {
                 nama: nama
             })
 
+            navigate('/')
         }
     }
+
     return (
-        <div className='container py-5'>
+        <div className='container py-5 mantap'>
             <h1 className='text-dark'>Register</h1>
             <p className='text-dark'>
                 Please register to authenticate
             </p>
             <hr />
+            <div className='text-danger mb-3' onChange={() => setValidasi(validasi)}>{validasi}</div>
             <div className='form-group'>
-                <label><b>Username</b></label>
-                <input type='text' className='form-control rounded-5' onChange={(e) => { setUsername(e.target.value) }} ></input>
-            </div>
-            <div className='text-danger' onChange={() => setValidasi(validasi)}>{validasi}</div>
-            <div className='form-group mt-3'>
-                <label><b>Password</b></label>
-                <input type='password' className='form-control rounded-5' onChange={(e) => { setPassword(e.target.value) }} ></input>
+                <label>Username</label>
+                <input type='text' onChange={(e) => { setUsername(e.target.value) }} ></input>
             </div>
             <div className='form-group mt-3'>
-                <label><b>Nama</b></label>
-                <input type='text' className='form-control rounded-5' onChange={(e) => { setNama(e.target.value) }} ></input>
+                <label>Password</label>
+                <input type='password' onChange={(e) => { setPassword(e.target.value) }} ></input>
+            </div>
+            <div className='form-group mt-3'>
+                <label>Nama</label>
+                <input type='text' onChange={(e) => { setNama(e.target.value) }} ></input>
             </div>
             <div className='form-group'>
                 <button className='btn btn-success mt-3 rounded-5' onClick={register} >Register</button>
